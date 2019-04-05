@@ -1,0 +1,35 @@
+{
+  "name": "sscf-endproject",
+  "version": "1.0.0",
+  "description": "endproject of sssf",
+  "main": "index.js",
+  "scripts": {
+    "start": "node -r dotenv/config index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoKraken/sscf-endproject.git"
+  },
+  "keywords": [
+    "endproject",
+    "sssf",
+    "express"
+  ],
+  "author": "Johanna Kraken",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoKraken/sscf-endproject/issues"
+  },
+  "homepage": "https://github.com/JoKraken/sscf-endproject#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "^7.0.0",
+    "eslint": "^5.16.0",
+    "express": "^4.16.4",
+    "helmet": "^3.16.0",
+    "mongoose": "^5.4.22",
+    "multer": "^1.4.1",
+    "nodemon": "^1.18.10",
+    "sharp": "^0.22.0"
+  }
+}
