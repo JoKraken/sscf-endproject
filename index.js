@@ -26,6 +26,7 @@ app.use(function (req, res, next) {
 });
 app.use(express.static('front'));
 
+
 //jelastic https redirect
 app.use ((req, res, next) => {
     if (req.secure) {
@@ -44,4 +45,8 @@ mongoose.connect('mongodb://'+ process.env.DB_USER +':'+ process.env.DB_PWD + '@
 
 }, err => {
     console.log('Connection to db failed: ' + err);
+});
+
+app.get('/', (req, res) => {
+    res.send("test");
 });
