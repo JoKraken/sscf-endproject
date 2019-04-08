@@ -38,7 +38,7 @@ app.use ((req, res, next) => {
     }
 });
 
-mongoose.connect('mongodb://'+ process.env.DB_USER +':'+ process.env.DB_PWD + '@'+ process.env.DB_HOST + ':' + process.env.DB_PORT + '/sssf-endproject').then(() => {
+mongoose.connect('mongodb://'+ process.env.DB_USER +':'+ process.env.DB_PWD + '@'+ process.env.DB_HOST + ':' + process.env.DB_PORT + '/sssf-endproject', { useNewUrlParser: true }).then(() => {
     console.log('Connected successfully.');
 
     app.listen(process.env.APP_PORT);
