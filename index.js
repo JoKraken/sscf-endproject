@@ -50,3 +50,25 @@ mongoose.connect('mongodb://'+ process.env.DB_USER +':'+ process.env.DB_PWD + '@
 app.get('/', (req, res) => {
     res.send("test");
 });
+
+/*app.use(bodyParser.json());       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+    extended: true
+}));*/
+
+app.post('/login', (req, res) => {
+    console.log("login POST");
+    userCon.checkUser(req.body).then((result) => {
+        if(result == 404 || result == 401){
+            res.sendStatus(result);
+        }else res.send(result);
+    });
+});
+
+app.post('/createUser', (req, res) => {
+    console.log("user CREATE");
+    userCon.createUser(req.body).then((result) => {
+        res.sendStatus(result);
+    });
+});
+
