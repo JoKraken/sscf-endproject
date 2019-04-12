@@ -50,5 +50,28 @@
     </div>
 </div>
 
+<div class="modal" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-controller="modalCtrl">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" ng-controller="registerCtrl">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="close('registerModal')"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Register</h4>
+            </div>
+            <div class="modal-body">
+                <div class="regDiv">
+                    <input class="form-control" type="text" placeholder="Username" id="nameReg">
+                    <input class="form-control" type="password" placeholder="Password" id="pwdReg" style="margin: 15px 0;">
+                    <div class="errorRegister"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" type="submit" ng-click="register()">register</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close('registerModal')">close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
