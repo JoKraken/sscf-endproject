@@ -3,7 +3,7 @@ app.controller('registerCtrl', function($scope) {
         console.log("register");
 
         const Http = new XMLHttpRequest();
-        const url='http://localhost:3000/createUser';
+        const url='/createUser';
         Http.open("POST", url, true);
         Http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         Http.send("name="+document.querySelector('#nameReg').value+

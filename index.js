@@ -47,14 +47,14 @@ mongoose.connect('mongodb://'+ process.env.DB_USER +':'+ process.env.DB_PWD + '@
     console.log('Connection to db failed: ' + err);
 });
 
-app.get('/', (req, res) => {
+app.get('/test', (req, res) => {
     res.send("test");
 });
 
-/*app.use(bodyParser.json());       // to support JSON-encoded bodies
+app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
-}));*/
+}));
 
 app.post('/login', (req, res) => {
     console.log("login POST");
