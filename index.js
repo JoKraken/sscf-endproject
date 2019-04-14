@@ -1,6 +1,10 @@
 'use strict';
 
 require('dotenv').config();
+
+//Controllers
+const userCon = require('./controllers/userController');
+
 const https = require('https');
 var multer = require('multer');
 var upload = multer({dest: 'front/uploads/'});
