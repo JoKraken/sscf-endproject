@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/admin.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/login.js"></script>
+    <script src="./js/modal.js"></script>
+    <script src="./js/register.js"></script>
+    <script src="./js/admin.js"></script>
+</head>
+<body>
+
+<body ng-app="myApp">
+
+<div class="container" ng-controller="adminCtrl">
+    <div class="row">
+        <div class="col"  style="display: flex; width: 100%; margin-top: 22px">
+            <ul class="nav nav-tabs" id="myTabs" style="width: 100%">
+                <li class="nav-item">
+                    <a class="nav-link" href="./">View</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./add.html">Add</a>
+                </li>
+                <li class="nav-item" ng-show="isAdmin">
+                    <a class="nav-link active" href="./admin.html">Admin</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="errorLogin"></div>
+    <div class="login-container" style="position: fixed; top: 15px; right: 80px;" ng-controller="loginCtrl">
+        <div id="loginForm" style="float: right; display: inline-flex; width: 450px">
+            <input class="form-control marginRight" type="text" placeholder="Username" id="name" required>
+            <input class="form-control marginRight" type="password" placeholder="Password" id="pwd" required>
+            <button class="btn btn-primary" type="submit" ng-click="login()">login</button>
+            <p class="or">or</p>
+            <button class="btn btn-primary" type="submit" ng-click="register()">register</button>
+        </div>
+        <div id="logedIn" style="float: right">
+            <button class="btn btn-secondary" type="submit" ng-click="logout()">logout</button>
+        </div>
+    </div>
+    <div class="tab-content">
+        <div id="catoTable" style="padding: 5%;margin: auto; border-bottom: 1px solid #0275d8">
+            <h4>Categories</h4>
+            <table class="table table-striped" style="margin-top: 15px">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="cato in categories">
+                    <td>{{cato.name}}</td>
+                    <td style="float: right">
+                        <button type="button" class="btn btn-primary" ng-click="deleteCato(cato._id)">delete</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div style="text-align: center"><button type="button" class="btn btn-primary" ng-click="addCato()">add</button></div>
+        </div>
+
+        <div id="userTable" style="padding: 5%;margin: auto">
+            <h4>Users</h4>
+            <table class="table table-striped" style="margin-top: 15px">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Username</th>
+                        <th scope="col">Admin status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="user in users">
+                        <td>{{user.username}}</td>
+                        <td style="float: right">
+                            <button ng-hide="{{user.admin}}" type="button" class="btn btn-default" ng-click="changeStatus(user._id, true)">add</button>
+                            <button ng-show="{{user.admin}}" type="button" class="btn btn-primary" ng-click="changeStatus(user._id, false)">delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="catoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-controller="adminCtrl">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" ng-controller="registerCtrl">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="close('catoModal')"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Add Category</h4>
+            </div>
+            <div class="modal-body">
+                <div class="catoDiv">
+                    <input class="form-control" type="text" placeholder="Name" id="nameCato" required>
+                    <div class="errorCato"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" type="submit" ng-click="add()">add</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close('catoModal')">close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

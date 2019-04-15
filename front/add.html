@@ -14,7 +14,7 @@
     <script src="./js/modal.js"></script>
     <script src="./js/register.js"></script>
     <script src="./js/admin.js"></script>
-    <script src="./js/view.js"></script>
+    <script src="./js/add.js"></script>
 </head>
 <body>
 
@@ -25,10 +25,10 @@
         <div class="col"  style="display: flex; width: 100%; margin-top: 22px">
             <ul class="nav nav-tabs" id="myTabs" style="width: 100%">
                 <li class="nav-item">
-                    <a class="nav-link active" href="./">View</a>
+                    <a class="nav-link" href="./">View</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./add.html">Add</a>
+                    <a class="nav-link active" href="./add.html">Add</a>
                 </li>
                 <li class="nav-item" ng-show="isAdmin">
                     <a class="nav-link" href="./admin.html">Admin</a>
@@ -49,8 +49,34 @@
             <button class="btn btn-secondary" type="submit" ng-click="logout()">logout</button>
         </div>
     </div>
-    <div class="tab-content">
+    <div class="tab-content" ng-controller="addCtrl">
+        <div ng-hide="logedIn" style="margin: 15px"> Please log in to add new content</div>
+        <form ng-show="logedIn" method="POST" action="/addItem" enctype="multipart/form-data" style="margin: 5%">
+            <div class="form-group">
+                <label for="catoSelect">Category:</label>
+                <select class="form-control" id="catoSelect" required>
+                    <option disabled selected value> -- select an category -- </option>
+                    <option ng-repeat="cato in category" value="{{cato._id}}">{{cato.name}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="title">Titel:</label>
+                <input type="text" class="form-control" name="title" id="title" placeholder="Enter title" required>
+            </div>
+            <div class="form-group">
+                <label for="des">Description:</label>
+                <textarea type="text" class="form-control" name="des" id="des"></textarea>
+            </div>
 
+            <div class="form-group">
+                <label for="image">Image</label>
+                <input type="file" class="form-control-file" id="image" name="image" aria-describedby="imageHelp">
+                <small id="imageHelp" class="form-text text-muted">Add image</small>
+            </div>
+            <input ng-hide="logedIn" type="text" class="form-control" name="uid" id="uid" value="">
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </div>
 </div>
 
