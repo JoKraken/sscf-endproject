@@ -17,7 +17,7 @@ app.controller('loginCtrl', function($scope) {
         Http.send("name="+document.querySelector('#name').value+
                         "&pwd="+document.querySelector('#pwd').value);
         Http.onreadystatechange= (e)=>{
-            console.log(Http);
+            //console.log(Http);
             if(Http.status == 200){
                 console.log("login");
                 localStorage.setItem("login", true);

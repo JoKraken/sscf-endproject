@@ -9,7 +9,7 @@ app.controller('registerCtrl', function($scope) {
         Http.send("name="+document.querySelector('#nameReg').value+
                         "&pwd="+document.querySelector('#pwdReg').value);
         Http.onreadystatechange= (e)=>{
-            console.log(Http);
+            //console.log(Http);
             if(Http.status == 200){
                 console.log("register");
                 localStorage.setItem("login", true);
