@@ -39,5 +39,16 @@ app.controller('adminCtrl', function($scope) {
         };
     }
 
-    
+    $scope.changeStatus = function(id, status) {
+        const Http = new XMLHttpRequest();
+        const url = '/changeAdminStatus';
+        Http.open("POST", url, true);
+        Http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        Http.send("id="+id+"&status="+status);
+        Http.onreadystatechange = (e) => {
+            if (Http.status == 200){
+                window.location.reload();
+            }
+        }
+    };
 });
