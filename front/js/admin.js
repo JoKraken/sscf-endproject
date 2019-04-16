@@ -51,4 +51,42 @@ app.controller('adminCtrl', function($scope) {
             }
         }
     };
+
+    $scope.deleteCato = function(id) {
+        const Http = new XMLHttpRequest();
+        const url = '/category/'+id;
+        Http.open("DELETE", url, true);
+        Http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        Http.send();
+        Http.onreadystatechange = (e) => {
+            if (Http.status == 200){
+                window.location.reload();
+            }
+        }
+    };
+
+    $scope.addCato = function() {
+        document.querySelector('#catoModal').style.display = "block";
+    };
+
+    $scope.add = function() {
+        const Http = new XMLHttpRequest();
+        const url='/createCategory';
+        Http.open("POST", url, true);
+        Http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        Http.send("name="+document.querySelector('#nameCato').value);
+        Http.onreadystatechange= (e)=>{
+            //console.log(Http);
+            if(Http.status == 200){
+                console.log("add");
+                document.querySelector('.errorCato').style.display = "none";
+                document.querySelector('#catoModal').style.display = "none";
+                window.location.reload();
+            } else{
+                console.log("not add");
+                document.querySelector('.errorCato').innerHTML = "Something went wrong. Please try it later again!";
+                document.querySelector('.errorCato').style.display = "block";
+            }
+        };
+    };
 });
