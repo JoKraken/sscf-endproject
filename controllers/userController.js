@@ -24,3 +24,13 @@ exports.createUser = (body) => {
         return 200;
     })
 };
+
+exports.isAdmin = (id) => {
+    return schema.User.find({_id: id}).then(data => {
+        if(data.length==1) {
+            if(data[0].admin){
+                return 200;
+            }else return 404
+        } else return 401;
+    });
+};

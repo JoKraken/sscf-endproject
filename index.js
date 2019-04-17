@@ -57,6 +57,14 @@ app.get('/user', (req, res) => {
     });
 });
 
+app.get('/isAdmin/:uid', (req, res) => {
+    let id = req.params.uid;
+    userCon.isAdmin(id).then((result) => {
+        res.sendStatus(result);
+    });
+});
+
+
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
