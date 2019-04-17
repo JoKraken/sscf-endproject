@@ -32,7 +32,7 @@ app.use(function (req, res, next) {
 app.use(express.static('front'));
 
 //jelastic https redirect
-app.use ((req, res, next) => {
+/*app.use ((req, res, next) => {
     if (req.secure) {
         // request was via https, so do no special handling
         next();
@@ -40,7 +40,7 @@ app.use ((req, res, next) => {
         // request was via http, so redirect to https
         res.redirect('https://' + req.headers.host + req.url);
     }
-});
+});*/
 
 mongoose.connect('mongodb://'+ process.env.DB_USER +':'+ process.env.DB_PWD + '@'+ process.env.DB_HOST + ':' + process.env.DB_PORT + '/sssf-endproject', { useNewUrlParser: true }).then(() => {
     console.log('Connected successfully.');
@@ -53,7 +53,13 @@ mongoose.connect('mongodb://'+ process.env.DB_USER +':'+ process.env.DB_PWD + '@
 
 app.get('/user', (req, res) => {
     userCon.getUser().then((result) => {
-        res.send(result);
+        res.send(JSON.stringify(result));
+    });
+});
+
+app.delete('/user/:uid', (req, res) => {
+    userCon.deleteUser(req.params.uid).then((result) => {
+        res.send(JSON.stringify(result));
     });
 });
 
@@ -71,16 +77,18 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 }));
 
 app.post('/login', (req, res) => {
+    console.log(req.body);
     userCon.checkUser(req.body).then((result) => {
+        console.log(result);
         if(result == 404 || result == 401){
-            res.sendStatus(result);
+            res.send(result);
         }else res.send(result);
     });
 });
 
 app.post('/createUser', (req, res) => {
     userCon.createUser(req.body).then((result) => {
-        res.sendStatus(result);
+        res.send(result);
     });
 });
 
