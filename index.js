@@ -84,7 +84,7 @@ app.post('/createUser', (req, res) => {
     });
 });
 
-app.post('/changeAdminStatus', (req, res) => {
+app.patch('/changeAdminStatus', (req, res) => {
     userCon.changeAdminStatus(req.body.id, req.body.status).then((result) => {
         res.sendStatus(result);
     });
