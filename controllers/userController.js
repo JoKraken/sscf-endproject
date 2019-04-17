@@ -40,3 +40,9 @@ exports.changeAdminStatus = (id, status) => {
         return 200;
     });
 };
+
+exports.deleteUser = (id) => {
+    return schema.User.findByIdAndRemove(id, function (err) {
+        return 200;
+    });
+};

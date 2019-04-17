@@ -49,7 +49,17 @@ app.controller('adminCtrl', function($scope) {
             if (Http.status == 200){
                 window.location.reload();
             }
-        }
+
+    $scope.deleteUser = function(id) {
+        var url = '/user/'+id;
+
+        fetch(url, {
+            method: 'DELETE',
+            headers:{
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(response => window.location.reload())
+            .catch(error => console.error('Error:', error));
     };
 
     $scope.deleteCato = function(id) {

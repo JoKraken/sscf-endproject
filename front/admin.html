@@ -78,6 +78,7 @@
                     <tr>
                         <th scope="col">Username</th>
                         <th scope="col">Admin status</th>
+                        <th scope="col">delete User</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -86,6 +87,9 @@
                         <td style="float: right">
                             <button ng-hide="{{user.admin}}" type="button" class="btn btn-default" ng-click="changeStatus(user._id, true)">add</button>
                             <button ng-show="{{user.admin}}" type="button" class="btn btn-primary" ng-click="changeStatus(user._id, false)">delete</button>
+                        </td>
+                        <td style="text-align: right">
+                            <button type="button" class="btn btn-danger" ng-click="deleteUser(user._id)">delete</button>
                         </td>
                     </tr>
                 </tbody>
