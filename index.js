@@ -4,6 +4,7 @@ require('dotenv').config();
 
 //Controllers
 const userCon = require('./controllers/userController');
+const cateCon = require('./controllers/categoryController');
 
 const https = require('https');
 var multer = require('multer');
@@ -11,10 +12,10 @@ var upload = multer({dest: 'front/uploads/'});
 const sharp = require('sharp');
 var bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 const express = require('express');
 const app = express();
 const http = express();
+
 
 //for security
 const helmet = require('helmet');
@@ -29,7 +30,6 @@ app.use(function (req, res, next) {
     next();
 });
 app.use(express.static('front'));
-
 
 //jelastic https redirect
 app.use ((req, res, next) => {
@@ -51,8 +51,10 @@ mongoose.connect('mongodb://'+ process.env.DB_USER +':'+ process.env.DB_PWD + '@
     console.log('Connection to db failed: ' + err);
 });
 
-app.get('/test', (req, res) => {
-    res.send("test");
+app.get('/user', (req, res) => {
+    userCon.getUser().then((result) => {
+        res.send(result);
+    });
 });
 
 app.use(bodyParser.json());       // to support JSON-encoded bodies
@@ -61,7 +63,6 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 }));
 
 app.post('/login', (req, res) => {
-    console.log("login POST");
     userCon.checkUser(req.body).then((result) => {
         if(result == 404 || result == 401){
             res.sendStatus(result);
@@ -70,9 +71,7 @@ app.post('/login', (req, res) => {
 });
 
 app.post('/createUser', (req, res) => {
-    console.log("user CREATE");
     userCon.createUser(req.body).then((result) => {
         res.sendStatus(result);
     });
 });
-

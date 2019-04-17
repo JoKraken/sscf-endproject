@@ -1,9 +1,13 @@
 const schema = require('../models/user');
 
+exports.getUser = () => {
+    return schema.User.find().then(data => {
+        return data;
+    });
+};
+
 exports.checkUser = (body) => {
-    console.log(body);
     return schema.User.find({username: body.name}).then(data => {
-        console.log(data);
         if(data.length==1) {
             if(data[0].password == body.pwd){
                 return data[0]._id;
@@ -14,8 +18,8 @@ exports.checkUser = (body) => {
 
 exports.createUser = (body) => {
     return schema.User.create({
-        username: req.body.name,
-        password: req.body.pwd
+        username: body.name,
+        password: body.pwd
     }).then(post => {
         return 200;
     })
