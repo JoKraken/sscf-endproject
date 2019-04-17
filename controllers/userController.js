@@ -34,3 +34,9 @@ exports.isAdmin = (id) => {
         } else return 401;
     });
 };
+
+exports.changeAdminStatus = (id, status) => {
+    return schema.User.update({_id: id},{admin: status}).then(data => {
+        return 200;
+    });
+};
