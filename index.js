@@ -4,7 +4,7 @@ require('dotenv').config();
 
 //Controllers
 const userCon = require('./controllers/userController');
-const cateCon = require('./controllers/categoryController');
+//const cateCon = require('./controllers/categoryController');
 
 const https = require('https');
 var multer = require('multer');
