@@ -12,7 +12,6 @@ app.controller('adminCtrl', function($scope) {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         }).then(() => {
-            console.log("isAdmin");
             $scope.isAdmin = true;
 
             fetch('/user', {
@@ -22,25 +21,23 @@ app.controller('adminCtrl', function($scope) {
                 }
             }).then(res => res.json())
             .then((response) => {
-                console.log("getUser");
-                console.log(response);
                 if (response != "") {
                     $scope.users = response;
                 }
 
-                /*fetch('/category', {
+                fetch('/category', {
                     method: 'GET',
                     headers:{
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
                 }).then(res => res.json())
-                .then(() => {
+                .then((response) => {
                     if (response != "") {
                         $scope.categories = response;
-                    }*/
+                    }
                     document.querySelector('.tab-content').style.display = "block";
                     $scope.$apply();
-                //}).catch(error => console.error('Error:', error));
+                }).catch(error => console.error('Error:', error));
             }).catch(error => console.error('Error:', error));
         }).catch(() => {
             $scope.isAdmin = false;
