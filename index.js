@@ -32,7 +32,7 @@ app.use(function (req, res, next) {
 app.use(express.static('front'));
 
 //jelastic https redirect
-app.use ((req, res, next) => {
+/*app.use ((req, res, next) => {
     if (req.secure) {
         // request was via https, so do no special handling
         next();
@@ -40,7 +40,7 @@ app.use ((req, res, next) => {
         // request was via http, so redirect to https
         res.redirect('https://' + req.headers.host + req.url);
     }
-});
+});*/
 
 mongoose.connect('mongodb://'+ process.env.DB_USER +':'+ process.env.DB_PWD + '@'+ process.env.DB_HOST + ':' + process.env.DB_PORT + '/sssf-endproject', { useNewUrlParser: true }).then(() => {
     console.log('Connected successfully.');
@@ -73,6 +73,12 @@ app.get('/isAdmin/:uid', (req, res) => {
 app.get('/category', (req, res) => {
     cateCon.getCategory().then((result) => {
         res.send(JSON.stringify(result));
+    });
+});
+
+app.delete('/category/:catoID', (req, res) => {
+    cateCon.deleteCategory(req.params.catoID).then((result) => {
+        res.send(result);
     });
 });
 
