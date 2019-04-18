@@ -5,3 +5,11 @@ exports.getCategory = () => {
         return data;
     });
 };
+
+exports.createCategory = (body) => {
+    return schema.Category.create({
+        name: body.name
+    }).then(post => {
+        return 200;
+    })
+};

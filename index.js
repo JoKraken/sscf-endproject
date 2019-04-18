@@ -103,3 +103,9 @@ app.patch('/changeAdminStatus', (req, res) => {
         res.sendStatus(result);
     });
 });
+
+app.post('/createCategory', (req, res) => {
+    cateCon.createCategory(req.body).then((result) => {
+        res.sendStatus(result);
+    });
+});
