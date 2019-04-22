@@ -48,7 +48,8 @@ app.controller('loginCtrl', function($scope) {
         document.querySelector('#logedIn').style.display = "none";
         document.querySelector('.errorLogin').style.display = "none";
         document.querySelector('#loginForm').style.display = "block";
-        window.location.reload();
+        //window.location.reload();
+        window.location.href = "/";
     };
 
     $scope.register = function() {

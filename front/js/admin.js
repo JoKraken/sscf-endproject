@@ -1,7 +1,9 @@
 app.controller('adminCtrl', function($scope) {
     if(localStorage.login == "false"){
         $scope.isAdmin = false;
+        $scope.isLogin = false;
     }else if(localStorage.login == "true"){
+        $scope.isLogin = true;
         document.querySelector('.tab-content').style.display = "none";
         $scope.users = [];
         $scope.categories = [];
@@ -11,37 +13,46 @@ app.controller('adminCtrl', function($scope) {
             headers:{
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
-        }).then(() => {
-            $scope.isAdmin = true;
+        }).then((res) => {
 
-            fetch('/user', {
-                method: 'GET',
-                headers:{
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
-            }).then(res => res.json())
-            .then((response) => {
-                if (response != "") {
-                    $scope.users = response;
-                }
+            if(res.status == 404){
+                $scope.isAdmin = false;
+                document.querySelector('.tab-content').style.display = "block";
+                $scope.$apply();
+            }else {
+                $scope.isAdmin = true;
 
-                fetch('/category', {
+                fetch('/user', {
                     method: 'GET',
                     headers:{
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
                 }).then(res => res.json())
-                .then((response) => {
-                    if (response != "") {
-                        $scope.categories = response;
-                    }
-                    document.querySelector('.tab-content').style.display = "block";
-                    $scope.$apply();
-                }).catch(error => console.error('Error:', error));
-            }).catch(error => console.error('Error:', error));
+                    .then((response) => {
+                        if (response != "") {
+                            $scope.users = response;
+                        }
+
+                        fetch('/category', {
+                            method: 'GET',
+                            headers:{
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            }
+                        }).then(res => res.json())
+                            .then((response) => {
+                                if (response != "") {
+                                    $scope.categories = response;
+                                }
+                                document.querySelector('.tab-content').style.display = "block";
+                                $scope.$apply();
+                            }).catch(error => console.error('Error:', error));
+                    }).catch(error => console.error('Error:', error));
+            }
+
         }).catch(() => {
             $scope.isAdmin = false;
             document.querySelector('.tab-content').style.display = "block";
+            $scope.$apply();
         });
 
     }
