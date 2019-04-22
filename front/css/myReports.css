@@ -1,0 +1,11 @@
+.cardfooterbutton{
+    min-width: 215px;
+}
+
+#timeView, #desView{
+    display: inline;
+}
+
+article{
+    margin-bottom: 15px;
+}
