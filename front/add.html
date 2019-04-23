@@ -54,10 +54,10 @@
     </div>
     <div class="tab-content" ng-controller="addCtrl">
         <div ng-hide="logedIn" style="margin: 15px"> Please log in to add new content</div>
-        <form ng-show="logedIn" method="POST" action="/addItem" enctype="multipart/form-data" style="margin: 5%">
+        <form id="addForm" ng-show="logedIn" method="POST" action="/item" enctype="multipart/form-data" style="margin: 5%">
             <div class="form-group">
                 <label for="catoSelect">Category:</label>
-                <select class="form-control" id="catoSelect" required>
+                <select class="form-control" id="catoSelect" name="catoSelect" form="addForm" required>
                     <option disabled selected value> -- select an category -- </option>
                     <option ng-repeat="cato in categories" value="{{cato._id}}">{{cato.name}}</option>
                 </select>
