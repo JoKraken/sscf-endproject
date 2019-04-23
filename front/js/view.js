@@ -1,3 +1,55 @@
 app.controller('viewCtrl', function($scope) {
+    $scope.catoId = undefined;
+
+    fetch('/items/'+$scope.catoId, {
+        method: 'GET',
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    }).then(res => res.json())
+    .then((response) => {
+        console.log(response);
+        $scope.reports = response;
+        fetch('/category', {
+            method: 'GET',
+            headers:{
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+            .then((response) => {
+                console.log(response);
+                $scope.categories = response;
+                $scope.$apply();
+            }).catch(error => console.error('Error:', error));
+    }).catch(error => console.error('Error:', error));
+
+    $scope.view = function (id) {
+        console.log(id);
+        $scope.reports.forEach(function (item) {
+            if (id == item._id) {
+                document.querySelector('.modal-body img').src = 'uploads/' + item.image;
+                document.querySelector('#titelView').innerHTML = item.title;
+                document.querySelector('#desView').innerHTML = item.details;
+                let date = new Date(item.time);
+
+                document.querySelector('#timeView').innerHTML = "("+date.getDate()+"."+date.getMonth()+"."+date.getFullYear()+") ";
+                document.querySelector('#myModal').style.display = "block";
+            }
+        });
+    };
+
+    $scope.pressTitle = function (id) {
+        fetch('/items/'+id, {
+            method: 'GET',
+            headers:{
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+        .then((response) => {
+            console.log(response);
+            $scope.reports = response;
+            $scope.$apply();
+        }).catch(error => console.error('Error:', error));
+    }
 
 });
