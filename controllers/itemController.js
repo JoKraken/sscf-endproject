@@ -31,3 +31,10 @@ function getRidOfPassword(data){
     });
     return data;
 }
+
+
+exports.deleteItem = (id) => {
+    return schema.Item.findByIdAndRemove(id, function (err) {
+        return 200;
+    });
+};

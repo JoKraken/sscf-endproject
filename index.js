@@ -95,6 +95,12 @@ app.get('/items/:catoid/:uid', (req, res) => {
     });
 });
 
+app.delete('/item/:itemID', (req, res) => {
+    itemCon.deleteItem(req.params.itemID).then((result) => {
+        res.send(result);
+    });
+});
+
 
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
