@@ -141,3 +141,10 @@ app.post('/item', upload.single('image'), (req, res) => {
         res.sendFile(__dirname + result);
     });
 });
+
+app.post('/editItem', upload.single('image'), (req, res) => {
+    itemCon.editItem(req).then((result) => {
+        console.log(result);
+        res.sendFile(__dirname + result);
+    });
+});

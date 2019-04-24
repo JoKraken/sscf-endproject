@@ -40,7 +40,25 @@ exports.createItem = (req) =>  {
         image: (req.file == undefined) ? "" : req.file.filename,
         user: req.body.uid
     }).then(post => {
-        return "/front/index.html";
+        return "/front/myReports.html";
+    });
+};
+
+exports.editItem = (req) =>  {
+    var temp = req.body;
+
+    let data = {
+        category: temp.cato,
+        title: temp.title,
+        details: temp.des,
+    };
+    if(req.file != undefined) data.image= req.file.filename;
+
+    return schema.Item.update({
+            _id: req.query.id
+        }, data
+    ).then(post => {
+        return "/front/myReports.html";
     });
 };
 
