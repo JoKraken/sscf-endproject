@@ -3,13 +3,13 @@ const Schema = mongoose.Schema;
 
 const dataSchema = new Schema({
     time: { type: Date, default: Date.now },
-    category_id: { type: Schema.Types.ObjectId, ref: 'Category'},
-    title: { type: String, default: '' },
+    category: { type: Schema.Types.ObjectId , ref: 'Category', required: true},
+    title: { type: String, default: '' , required: true},
     details: { type: String, default: '' },
     image: { type: String, default: '' },
     delete: { type: Boolean, default: false },
-    user_id: { type: Schema.Types.ObjectId, ref: 'User'}
+    user: { type: Schema.Types.ObjectId, ref: 'User', required: true}
 });
 
-const Model = mongoose.model('Test', dataSchema);
-exports.Data = Model;
+const Model = mongoose.model('Item', dataSchema);
+exports.Item = Model;
