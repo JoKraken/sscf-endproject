@@ -134,3 +134,10 @@ app.post('/createCategory', (req, res) => {
         res.sendStatus(result);
     });
 });
+
+app.post('/item', upload.single('image'), (req, res) => {
+    itemCon.createItem(req).then((result) => {
+        console.log(result);
+        res.sendFile(__dirname + result);
+    });
+});

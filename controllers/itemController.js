@@ -32,6 +32,17 @@ function getRidOfPassword(data){
     return data;
 }
 
+exports.createItem = (req) =>  {
+    return schema.Item.create({
+        category: req.body.catoSelect,
+        title: req.body.title,
+        details: req.body.des,
+        image: (req.file == undefined) ? "" : req.file.filename,
+        user: req.body.uid
+    }).then(post => {
+        return "/front/index.html";
+    });
+};
 
 exports.deleteItem = (id) => {
     return schema.Item.findByIdAndRemove(id, function (err) {
