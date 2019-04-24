@@ -5,6 +5,7 @@ require('dotenv').config();
 //Controllers
 const userCon = require('./controllers/userController');
 const cateCon = require('./controllers/categoryController');
+const itemCon = require('./controllers/itemController');
 
 const https = require('https');
 var multer = require('multer');
@@ -79,6 +80,18 @@ app.get('/category', (req, res) => {
 app.delete('/category/:catoID', (req, res) => {
     cateCon.deleteCategory(req.params.catoID).then((result) => {
         res.send(result);
+    });
+});
+
+app.get('/items/:catoid', (req, res) => {
+    itemCon.getItems(req.params.catoid).then((result) => {
+        res.send(JSON.stringify(result));
+    });
+});
+
+app.get('/items/:catoid/:uid', (req, res) => {
+    itemCon.getItemsFromUser(req.params.catoid, req.params.uid).then((result) => {
+        res.send(JSON.stringify(result));
     });
 });
 
