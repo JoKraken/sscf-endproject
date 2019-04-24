@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/settings.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/login.js"></script>
+    <script src="./js/register.js"></script>
+    <script src="./js/admin.js"></script>
+    <script src="./js/settings.js"></script>
+</head>
+<body>
+
+<body ng-app="myApp">
+
+<div class="container" ng-controller="adminCtrl">
+    <div class="row">
+        <div class="col"  style="display: flex; width: 100%; margin-top: 22px">
+            <ul class="nav nav-tabs" id="myTabs" style="width: 100%">
+                <li class="nav-item">
+                    <a class="nav-link" href="./">View</a>
+                </li>
+                <li class="nav-item" ng-show="isLogin">
+                    <a class="nav-link" href="./myReports.html">My Reports</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./add.html">Add</a>
+                </li>
+                <li class="nav-item" ng-show="isLogin">
+                    <a class="nav-link active" href="./settings.html">Settings</a>
+                </li>
+                <li class="nav-item" ng-show="isAdmin">
+                    <a class="nav-link" href="./admin.html">Admin</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="errorLogin"></div>
+    <div class="login-container" style="position: fixed; top: 15px; right: 80px;" ng-controller="loginCtrl">
+        <div id="loginForm" style="float: right; display: inline-flex; width: 450px">
+            <input class="form-control marginRight" type="text" placeholder="Username" id="name" required>
+            <input class="form-control marginRight" type="password" placeholder="Password" id="pwd" required>
+            <button class="btn btn-primary" type="submit" ng-click="login()">login</button>
+            <p class="or">or</p>
+            <button class="btn btn-primary" type="submit" ng-click="register()">register</button>
+        </div>
+        <div id="logedIn" style="float: right">
+            <button class="btn btn-secondary" type="submit" ng-click="logout()">logout</button>
+        </div>
+    </div>
+    <div class="tab-content">
+
+        <div id="userChange" ng-controller="settingCtrl" style="padding: 5%;margin: auto; border-bottom: 1px solid #0275d8">
+            <h4>Change User settings</h4>
+            <div id="userChangeForm" >
+                <div class="form-group">
+                    <label for="name">Username:</label>
+                    <input type="text" class="form-control" name="name" id="Uname" value="{{user.username}}" required>
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Password:</label>
+                    <input type="password" class="form-control" name="pwd" id="Upassword" value="{{user.password}}" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary" ng-click="edit()" style="margin: 0 45%">edit</button>
+                <p id="uerror">An error has current</p>
+                <p id="uischange">The edition is executed</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

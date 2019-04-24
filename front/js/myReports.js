@@ -8,7 +8,6 @@ app.controller('myReportCtrl', function($scope) {
         }
     }).then(res => res.json())
     .then((response) => {
-        console.log(response);
         $scope.reports = response;
         fetch('/category', {
             method: 'GET',
