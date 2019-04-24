@@ -1,7 +1,7 @@
 const schema = require('../models/user');
 
 exports.getUser = () => {
-    return schema.User.find().then(data => {
+    return schema.User.find({}, {password: 0}).then(data => {
         return data;
     });
 };
