@@ -14,6 +14,7 @@ app.controller('settingCtrl', function($scope) {
         }else{
             document.querySelector('#uerror').style.display = "block";
         }
+        $scope.$apply();
     }).catch(error => console.error('Error:', error));
 
     $scope.edit= function(id) {
@@ -28,7 +29,6 @@ app.controller('settingCtrl', function($scope) {
                 'Content-Type': 'application/json'
             }
         }).then((response) => {
-            console.log(response);
             if (response.status == 200) {
                 document.querySelector('#uischange').style.display = "block";
             }else{
