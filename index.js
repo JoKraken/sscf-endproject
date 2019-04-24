@@ -58,6 +58,13 @@ app.get('/user', (req, res) => {
     });
 });
 
+app.get('/user/:uid', (req, res) => {
+    userCon.getUserById(req.params.uid).then((result) => {
+        res.send(JSON.stringify(result));
+    });
+});
+
+
 app.delete('/user/:uid', (req, res) => {
     userCon.deleteUser(req.params.uid).then((result) => {
         res.send(JSON.stringify(result));
@@ -125,6 +132,12 @@ app.post('/createUser', (req, res) => {
 
 app.patch('/changeAdminStatus', (req, res) => {
     userCon.changeAdminStatus(req.body.id, req.body.status).then((result) => {
+        res.sendStatus(result);
+    });
+});
+
+app.patch('/changeUserSettings', (req, res) => {
+    userCon.changeUserSettings(req.body._id, req.body).then((result) => {
         res.sendStatus(result);
     });
 });

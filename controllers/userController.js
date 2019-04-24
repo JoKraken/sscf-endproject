@@ -5,6 +5,11 @@ exports.getUser = () => {
         return data;
     });
 };
+exports.getUserById = (uid) => {
+    return schema.User.find({_id: uid}).then(data => {
+        return data;
+    });
+};
 
 exports.checkUser = (body) => {
     return schema.User.find({username: body.name}).then(data => {
@@ -39,6 +44,12 @@ exports.isAdmin = (id) => {
 
 exports.changeAdminStatus = (id, status) => {
     return schema.User.update({_id: id},{admin: status}).then(data => {
+        return 200;
+    });
+};
+
+exports.changeUserSettings = (id, body) => {
+    return schema.User.update({_id: id},{username: body.name, password: body.pwd}).then(data => {
         return 200;
     });
 };
