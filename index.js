@@ -149,6 +149,7 @@ app.post('/createCategory', (req, res) => {
 });
 
 app.post('/item', upload.single('image'), (req, res) => {
+    console.log(req.body);
     itemCon.createItem(req).then((result) => {
         console.log(result);
         res.sendFile(__dirname + result);
