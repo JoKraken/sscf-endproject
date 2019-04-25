@@ -104,13 +104,6 @@
                     google.maps.event.addListener(map,'center_changed', function() {
                         addmarker(map);
                     });
-
-                    var marker = new google.maps.Marker({
-                        position: new google.maps.LatLng(coords.latitude, coords.longitude),
-                        map: map,
-                        title: "Hier bist du :)"
-                    });
-                    gmarkers.push(marker);
                 }
 
                 function addmarker(map){

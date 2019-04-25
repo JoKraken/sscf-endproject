@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/login.css">
     <link rel="stylesheet" href="./css/myReports.css">
+    <link rel="stylesheet" href="./css/map.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -16,6 +17,8 @@
     <script src="./js/register.js"></script>
     <script src="./js/admin.js"></script>
     <script src="./js/view.js"></script>
+
+    <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 </head>
 <body>
 
@@ -58,7 +61,80 @@
     </div>
     <div class="tab-content" ng-controller="viewCtrl">
 
-        <div class="tab-pane active" id="home" role="tabpanel">
+        <div style="float: right;">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-secondary active" ng-click="toogleClick(1)">
+                    <input type="radio" name="options" id="option1" autocomplete="off" checked> List
+                </label>
+                <label class="btn btn-secondary" ng-click="toogleClick(0)">
+                    <input type="radio" name="options" id="option2" autocomplete="off"> Map
+                </label>
+            </div>
+        </div>
+
+        <div id="map"style="margin: 15px 0; display: none">
+            <div style="width: 600px; height: 450px"><div id="map_canvas" name="map"></div></div>
+
+            <script>
+                function initialize(coords) {
+                    var mapOptions = {
+                        zoom: 14,
+                        center: new google.maps.LatLng(coords.latitude, coords.longitude),
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    };
+                    map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+                    addmarker(map);
+                }
+
+                function addmarker(map){
+                    fetch('/items/undefined', {
+                        method: 'GET',
+                        headers:{
+                            'Content-Type': 'application/json'
+                        }
+                    }).then(res => res.json())
+                        .then((response) => {
+                            console.log(response);
+                            for(var i = 0; i < response.length; i++){
+                                var marker = new google.maps.Marker({
+                                    position: new google.maps.LatLng(response[i].gps.lat, response[i].gps.long),
+                                    map: map,
+                                    title: response[i].title
+                                });
+                                var infowindow = new google.maps.InfoWindow({
+                                    content: response[i].title+": "+response[i].details
+                                });
+                                var content = response[i].title+": "+response[i].details;
+
+                                google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){
+                                    return function() {
+                                        infowindow.setContent(content);
+                                        infowindow.open(map,marker);
+                                    };
+                                })(marker,content,infowindow));
+                            }
+
+                        }).catch(error => console.error('Error:', error));
+                }
+
+                var location_timeout = setTimeout("geolocFail()", 10000);
+
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    clearTimeout(location_timeout);
+
+                    initialize(position.coords);
+                }, function(error) {
+                    clearTimeout(location_timeout);
+                    geolocFail();
+                });
+
+                function geolocFail(){
+                    document.getElementById('pos').innerHTML = 'Deine Position konnte leider nicht ermittelt werden';
+                }
+            </script>
+        </div>
+
+        <div class="tab-pane active" id="list" role="tabpanel">
             <div class="row" style="margin: 15px 0;">
                 <div class="col">
                     <div class="btn-toolbar titleLine" role="toolbar" aria-label="Toolbar with button groups">

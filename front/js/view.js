@@ -8,7 +8,6 @@ app.controller('viewCtrl', function($scope) {
         }
     }).then(res => res.json())
     .then((response) => {
-        console.log(response);
         $scope.reports = response;
         fetch('/category', {
             method: 'GET',
@@ -17,7 +16,6 @@ app.controller('viewCtrl', function($scope) {
             }
         }).then(res => res.json())
             .then((response) => {
-                console.log(response);
                 $scope.categories = response;
                 $scope.$apply();
             }).catch(error => console.error('Error:', error));
@@ -50,6 +48,15 @@ app.controller('viewCtrl', function($scope) {
             $scope.reports = response;
             $scope.$apply();
         }).catch(error => console.error('Error:', error));
-    }
+    };
 
+    $scope.toogleClick = function (num) {
+        if(num){
+            document.querySelector('#list').style.display = "block";
+            document.querySelector('#map').style.display = "none";
+        }else{
+            document.querySelector('#list').style.display = "none";
+            document.querySelector('#map').style.display = "block";
+        }
+    };
 });
