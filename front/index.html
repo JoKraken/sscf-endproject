@@ -18,7 +18,7 @@
     <script src="./js/admin.js"></script>
     <script src="./js/view.js"></script>
 
-    <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1ULZ-JB8toUkcffhV6hbvpB7fQMK4u2E&callback=initMap&sensor=true"></script>
 </head>
 <body>
 
@@ -78,7 +78,7 @@
             <script>
                 function initialize(coords) {
                     var mapOptions = {
-                        zoom: 14,
+                        zoom: 12,
                         center: new google.maps.LatLng(coords.latitude, coords.longitude),
                         mapTypeId: google.maps.MapTypeId.ROADMAP
                     };

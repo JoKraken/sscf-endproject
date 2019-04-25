@@ -20,7 +20,7 @@ app.controller('viewCtrl', function($scope) {
                 $scope.$apply();
             }).catch(error => console.error('Error:', error));
     }).catch(error => console.error('Error:', error));
-
+    
     $scope.view = function (id) {
         console.log(id);
         $scope.reports.forEach(function (item) {
