@@ -8,7 +8,11 @@ const dataSchema = new Schema({
     details: { type: String, default: '' },
     image: { type: String, default: '' },
     delete: { type: Boolean, default: false },
-    user: { type: Schema.Types.ObjectId, ref: 'User', required: true}
+    user: { type: Schema.Types.ObjectId, ref: 'User', required: true},
+    gps: {
+        lat: { type: String, default: '' },
+        long: { type: String, default: '' }
+    }
 });
 
 const Model = mongoose.model('Item', dataSchema);

@@ -38,7 +38,8 @@ exports.createItem = (req) =>  {
         title: req.body.title,
         details: req.body.des,
         image: (req.file == undefined) ? "" : req.file.filename,
-        user: req.body.uid
+        user: req.body.uid,
+        gps: {lat: req.body.default_latitude, long: req.body.default_longitude}
     }).then(post => {
         return "/front/myReports.html";
     });
