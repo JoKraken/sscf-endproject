@@ -4,7 +4,8 @@
   "description": "endproject of sssf",
   "main": "index.js",
   "scripts": {
-    "start": "node -r dotenv/config index.js"
+    "start": "node -r dotenv/config index.js",
+    "apidoc": "apidoc -i ./ -e ./node_modules -o ./apidoc/"
   },
   "repository": {
     "type": "git",

@@ -44,6 +44,7 @@ Live Demo:  https://env-3364758.jelastic.metropolia.fi/
 * `'/edititem' - POST` - edit category
 * `'/item/:itemID' - DELETE` - delete item by id
 
+For more information klick [here](https://env-3364758.jelastic.metropolia.fi/apidoc).
 
 
 

@@ -24,13 +24,13 @@ exports.getItemsFromUser = (catoid, uid) => {
     }
 };
 
-function getRidOfPassword(data){
+const getRidOfPassword = (data) => {
     data.forEach(function (item) {
         item.user.password = undefined;
         item.user.admin = undefined;
     });
     return data;
-}
+};
 
 exports.createItem = (req) =>  {
     return schema.Item.create({
