@@ -8,7 +8,6 @@ app.controller('settingCtrl', function($scope) {
         }
     }).then(res => res.json())
     .then((response) => {
-        console.log(response);
         if (response.length == 1) {
             $scope.user = response[0];
         }else{

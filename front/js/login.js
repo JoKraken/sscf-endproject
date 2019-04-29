@@ -1,10 +1,9 @@
 app.controller('loginCtrl', function($scope) {
-
     if (localStorage.login == "true") {
         document.querySelector('.errorLogin').style.display = "none";
         document.querySelector('#loginForm').style.display = "none";
+        $scope.name = localStorage.name;
     } else if(localStorage.login == "false" || localStorage.login == undefined){
-        console.log("not login: "+localStorage.login);
         document.querySelector('#logedIn').style.display = "none";
     }
 
@@ -20,11 +19,11 @@ app.controller('loginCtrl', function($scope) {
             headers:{
                 'Content-Type': 'application/json'
             }
-        }).then((response) => {
-            console.log(response);
-            if (response.status == 200) {
+        }).then((response) => response.json()).then((response) => {
+            if (response != "404" && response != "401") {
                 localStorage.setItem("login", true);
-                localStorage.setItem("temp", response);
+                localStorage.setItem("temp", response.id);
+                localStorage.setItem("name", response.name);
                 document.querySelector('#logedIn').style.display = "block";
                 document.querySelector('.errorLogin').style.display = "none";
                 document.querySelector('#loginForm').style.display = "none";
@@ -33,7 +32,7 @@ app.controller('loginCtrl', function($scope) {
                 localStorage.setItem("login", false);
                 localStorage.setItem("temp", undefined);
                 document.querySelector('#logedIn').style.display = "none";
-                document.querySelector('.errorLogin').innerHTML = (response.status == 404) ? "The password is wrong" : "The username is wrong";
+                document.querySelector('.errorLogin').innerHTML = (response == "404") ? "The password is wrong" : "The username is wrong";
                 document.querySelector('.errorLogin').style.display = "block";
             }
         }).catch(error => console.error('Error:', error));

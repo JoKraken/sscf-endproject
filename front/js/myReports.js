@@ -16,7 +16,6 @@ app.controller('myReportCtrl', function($scope) {
             }
         }).then(res => res.json())
             .then((response) => {
-                console.log(response);
                 $scope.categories = response;
                 $scope.$apply();
             }).catch(error => console.error('Error:', error));
@@ -30,14 +29,12 @@ app.controller('myReportCtrl', function($scope) {
             }
         }).then(res => res.json())
             .then((response) => {
-                console.log(response);
                 $scope.reports = response;
                 $scope.$apply();
             }).catch(error => console.error('Error:', error));
     };
 
     $scope.view = function (id) {
-        console.log(id);
         $scope.reports.forEach(function (item) {
             if (id == item._id) {
                 document.querySelector('.modal-body img').src = 'uploads/' + item.image;
@@ -52,7 +49,6 @@ app.controller('myReportCtrl', function($scope) {
     };
 
     $scope.edit = function (id) {
-        console.log(id);
         $scope.reports.forEach(function (item) {
             if (id == item._id) {
                 document.querySelector('#editForm').action = document.querySelector('#editForm').action + "?id=" + item._id;

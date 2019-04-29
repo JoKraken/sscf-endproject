@@ -15,10 +15,10 @@ exports.checkUser = (body) => {
     return schema.User.find({username: body.name}).then(data => {
         if (data.length == 1) {
             if (data[0].password == body.pwd) {
-                return data[0]._id;
-            } else return 404;
+                return {id: data[0]._id, name: data[0].username};
+            } else return "404";
         } else {
-            return 401;
+            return "401";
         }
     });
 };
