@@ -34,6 +34,7 @@ app.controller('myReportCtrl', function($scope) {
             }).catch(error => console.error('Error:', error));
     };
 
+    
     $scope.view = function (id) {
         $scope.reports.forEach(function (item) {
             if (id == item._id) {
@@ -53,7 +54,7 @@ app.controller('myReportCtrl', function($scope) {
             if (id == item._id) {
                 document.querySelector('#editForm').action = document.querySelector('#editForm').action + "?id=" + item._id;
                 console.log(document.querySelector('form').action);
-                document.querySelector('#cato').value = item.category;
+                document.querySelector('#cato').value = item.category.name;
                 document.querySelector('#title').value = item.title;
                 document.querySelector('#des').value = item.details;
                 document.querySelector('#editModal').style.display = "block";

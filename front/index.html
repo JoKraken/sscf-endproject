@@ -154,7 +154,9 @@
                                 <img class="card-img-top" src="uploads/{{data.image}}" alt="">
                                 <div class="card-block">
                                     <h3 class="card-title">{{report.title}}</h3>
-                                    <p class="card-text"><small>{{report.time | date: "dd.MM.yyyy, HH:mm"}} <br> from {{report.user.username}}</small></p>
+                                    <p class="card-text">
+                                        <small>{{report.time | date: "dd.MM.yyyy, HH:mm"}} <br> category: {{report.category.name}}</small>
+                                    </p>
                                     <p class="card-text">{{report.details}}</p>
                                 </div>
                                 <div class="card-footer cardfooterbutton">

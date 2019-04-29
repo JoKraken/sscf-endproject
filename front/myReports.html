@@ -78,7 +78,10 @@
                                 <img class="card-img-top" src="uploads/{{data.image}}" alt="">
                                 <div class="card-block">
                                     <h3 class="card-title">{{report.title}}</h3>
-                                    <p class="card-text"><small>{{report.time | date: "dd.MM.yyyy, HH:mm"}}</small></p><p class="card-text">{{report.details}}</p>
+                                    <p class="card-text">
+                                        <small>{{report.time | date: "dd.MM.yyyy, HH:mm"}} <br> category: {{report.category.name}}</small>
+                                    </p>
+                                    <p class="card-text">{{report.details}}</p>
                                 </div>
                                 <div class="card-footer">
                                     <p class="cardfooterbutton">
@@ -123,7 +126,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="close('editModal')"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Edit an article</h4>
+                <h4 class="modal-title">Edit an report</h4>
             </div>
             <div class="modal-body">
                 <form method="POST" id="editForm" action="/editItem" enctype="multipart/form-data" style="display: inline">
