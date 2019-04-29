@@ -1,6 +1,5 @@
 app.controller('loginCtrl', function($scope) {
 
-    console.log(localStorage.login);
     if (localStorage.login == "true") {
         document.querySelector('.errorLogin').style.display = "none";
         document.querySelector('#loginForm').style.display = "none";
@@ -21,10 +20,9 @@ app.controller('loginCtrl', function($scope) {
             headers:{
                 'Content-Type': 'application/json'
             }
-        }).then(res => res.json()).then((response) => {
+        }).then((response) => {
             console.log(response);
-            if (response != "Not Found" || response != "Unauthorized") {
-                console.log("login");
+            if (response.status == 200) {
                 localStorage.setItem("login", true);
                 localStorage.setItem("temp", response);
                 document.querySelector('#logedIn').style.display = "block";
@@ -34,7 +32,6 @@ app.controller('loginCtrl', function($scope) {
             } else {
                 localStorage.setItem("login", false);
                 localStorage.setItem("temp", undefined);
-                console.log("not login");
                 document.querySelector('#logedIn').style.display = "none";
                 document.querySelector('.errorLogin').innerHTML = (response.status == 404) ? "The password is wrong" : "The username is wrong";
                 document.querySelector('.errorLogin').style.display = "block";

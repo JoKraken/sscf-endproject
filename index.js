@@ -210,11 +210,8 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
  * @apiError 401 user not found
  */
 app.post('/login', (req, res) => {
-    console.log(req.body);
     userCon.checkUser(req.body).then((result) => {
-        if(result == 404 || result == 401){
-            res.send(result);
-        }else res.send(result);
+        res.send(result);
     });
 });
 
