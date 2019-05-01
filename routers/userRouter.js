@@ -16,7 +16,6 @@ router.use(express.static('front'));
  */
 router.get('/all', (req, res) => {
     userCon.getUser().then((result) => {
-        console.log(result);
         res.send(JSON.stringify(result));
     });
 });
@@ -126,8 +125,7 @@ router.delete('/:uid', (req, res) => {
  * @apiError 401 user not found
  */
 router.get('/isAdmin/:uid', (req, res) => {
-    let id = req.params.uid;
-    userCon.isAdmin(id).then((result) => {
+    userCon.isAdmin(req.params.uid).then((result) => {
         res.sendStatus(result);
     });
 });

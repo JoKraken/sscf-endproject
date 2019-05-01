@@ -45,7 +45,7 @@
     <div class="errorLogin"></div>
     <div class="login-container" style="position: fixed; top: 15px; right: 80px;" ng-controller="loginCtrl">
         <div id="loginForm" style="float: right; display: inline-flex; width: 450px">
-            <input class="form-control marginRight" type="text" placeholder="Username" id="name" required>
+            <input class="form-control marginRight" type="text" placeholder="Username" id="name" maxlength="10" required>
             <input class="form-control marginRight" type="password" placeholder="Password" id="pwd" required>
             <button class="btn btn-primary" type="submit" ng-click="login()">login</button>
             <p class="or">or</p>
@@ -62,7 +62,7 @@
             <div id="userChangeForm" >
                 <div class="form-group">
                     <label for="name">Username:</label>
-                    <input type="text" class="form-control" name="name" id="Uname" value="{{user.username}}" required>
+                    <input type="text" class="form-control" name="name" id="Uname" value="{{user.username}}" maxlength="10" required>
                 </div>
                 <div class="form-group">
                     <label for="pwd">Password:</label>

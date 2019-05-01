@@ -72,7 +72,7 @@ app.controller('adminCtrl', function($scope) {
     };
 
     $scope.deleteUser = function(id) {
-        var url = '/user/all/'+id;
+        var url = '/user/'+id;
 
         fetch(url, {
             method: 'DELETE',

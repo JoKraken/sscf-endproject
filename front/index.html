@@ -49,7 +49,7 @@
     <div class="errorLogin"></div>
     <div class="login-container" style="position: fixed; top: 15px; right: 80px;" ng-controller="loginCtrl">
         <div id="loginForm" style="float: right; display: inline-flex; width: 450px">
-            <input class="form-control marginRight" type="text" placeholder="Username" id="name" required>
+            <input class="form-control marginRight" type="text" placeholder="Username" id="name" maxlength="10" required>
             <input class="form-control marginRight" type="password" placeholder="Password" id="pwd" required>
             <button class="btn btn-primary" type="submit" ng-click="login()">login</button>
             <p class="or">or</p>
@@ -184,7 +184,7 @@
             </div>
             <div class="modal-body">
                 <div class="regDiv">
-                    <input class="form-control" type="text" placeholder="Username" id="nameReg" required>
+                    <input class="form-control" type="text" placeholder="Username" id="nameReg" maxlength="10" required>
                     <input class="form-control" type="password" placeholder="Password" id="pwdReg" style="margin: 15px 0;" required>
                     <div class="errorRegister"></div>
                 </div>

@@ -24,12 +24,16 @@ exports.checkUser = (body) => {
 };
 
 exports.createUser = (body) => {
-    return schema.User.create({
-        username: body.name,
-        password: body.pwd
-    }).then(post => {
-        return post._id;
-    })
+    return schema.User.find({username: body.name}).then(data => {
+        if(data.length == 0 && body.name.length <= 10){
+            return schema.User.create({
+                username: body.name,
+                password: body.pwd
+            }).then(post => {
+                return post._id;
+            });
+        }else return "404";
+    });
 };
 
 exports.isAdmin = (id) => {
