@@ -38,7 +38,7 @@ router.get('/all/:uid', (req, res) => {
 
 
 /**
- * @api {post} /login check user
+ * @api {post} /user/login check user
  * @apiName login
  * @apiGroup User
  *
@@ -55,7 +55,7 @@ router.post('/login', (req, res) => {
 });
 
 /**
- * @api {post} /createUser create user
+ * @api {post} /user/create create user
  * @apiName createUser
  * @apiGroup User
  *
@@ -70,7 +70,7 @@ router.post('/create', (req, res) => {
 });
 
 /**
- * @api {post} /changeAdminStatus change admin status
+ * @api {post} /user/changeAdminStatus change admin status
  * @apiName changeAdminStatus
  * @apiGroup User
  *
@@ -85,7 +85,7 @@ router.patch('/changeAdminStatus', (req, res) => {
 });
 
 /**
- * @api {post} /changeUserSettings change user settings
+ * @api {post} /user/changeUserSettings change user settings
  * @apiName changeUserSettings
  * @apiGroup User
  *
@@ -115,7 +115,7 @@ router.delete('/:uid', (req, res) => {
 });
 
 /**
- * @api {get} /isAdmin/:uid get the check if user is admin
+ * @api {get} /user/isAdmin/:uid get the check if user is admin
  * @apiName IsAdmin
  * @apiGroup User
  *

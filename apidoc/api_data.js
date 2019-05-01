@@ -399,7 +399,7 @@ define({ "api": [
   },
   {
     "type": "get",
-    "url": "/isAdmin/:uid",
+    "url": "/user/isAdmin/:uid",
     "title": "get the check if user is admin",
     "name": "IsAdmin",
     "group": "User",
@@ -453,7 +453,7 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/changeAdminStatus",
+    "url": "/user/changeAdminStatus",
     "title": "change admin status",
     "name": "changeAdminStatus",
     "group": "User",
@@ -489,7 +489,7 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/changeUserSettings",
+    "url": "/user/changeUserSettings",
     "title": "change user settings",
     "name": "changeUserSettings",
     "group": "User",
@@ -525,7 +525,7 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/createUser",
+    "url": "/user/create",
     "title": "create user",
     "name": "createUser",
     "group": "User",
@@ -561,7 +561,7 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/login",
+    "url": "/user/login",
     "title": "check user",
     "name": "login",
     "group": "User",
