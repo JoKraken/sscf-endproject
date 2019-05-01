@@ -21,6 +21,19 @@
 <body ng-app="myApp">
 
 <div class="container" ng-controller="adminCtrl">
+    <div class="login-container" style="" ng-controller="loginCtrl">
+        <div id="loginForm" style="padding-top: 20px;float: right; display: inline-flex; width: 450px">
+            <input class="form-control marginRight" type="text" placeholder="Username" id="name" maxlength="10" required>
+            <input class="form-control marginRight" type="password" placeholder="Password" id="pwd" required>
+            <button class="btn btn-primary" type="submit" ng-click="login()">login</button>
+            <p class="or">or</p>
+            <button class="btn btn-primary" type="submit" ng-click="register()">register</button>
+            <div class="errorLogin" style="position: absolute; margin-top: 35px;"></div>
+        </div>
+        <div id="logedIn" style="padding-top: 20px;float: right">
+            Hello {{name}}!  <button class="btn btn-secondary" type="submit" ng-click="logout()">logout</button>
+        </div>
+    </div>
     <div class="row">
         <div class="col"  style="display: flex; width: 100%; margin-top: 22px">
             <ul class="nav nav-tabs" id="myTabs" style="width: 100%">
@@ -40,19 +53,6 @@
                     <a class="nav-link active" href="./admin.html">Admin</a>
                 </li>
             </ul>
-        </div>
-    </div>
-    <div class="errorLogin"></div>
-    <div class="login-container" style="position: fixed; top: 15px; right: 80px;" ng-controller="loginCtrl">
-        <div id="loginForm" style="float: right; display: inline-flex; width: 450px">
-            <input class="form-control marginRight" type="text" placeholder="Username" id="name" maxlength="10" required>
-            <input class="form-control marginRight" type="password" placeholder="Password" id="pwd" required>
-            <button class="btn btn-primary" type="submit" ng-click="login()">login</button>
-            <p class="or">or</p>
-            <button class="btn btn-primary" type="submit" ng-click="register()">register</button>
-        </div>
-        <div id="logedIn" style="float: right">
-            Hello {{name}}!  <button class="btn btn-secondary" type="submit" ng-click="logout()">logout</button>
         </div>
     </div>
     <div class="tab-content">
