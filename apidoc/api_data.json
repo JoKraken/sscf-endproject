@@ -29,7 +29,7 @@
   },
   {
     "type": "post",
-    "url": "/createCategory",
+    "url": "/category/create",
     "title": "create category",
     "name": "createCategory",
     "group": "Category",
@@ -60,7 +60,7 @@
       }
     },
     "version": "0.0.0",
-    "filename": "./index.js",
+    "filename": "./routers/categoryRouter.js",
     "groupTitle": "Category"
   },
   {
@@ -96,12 +96,12 @@
       }
     },
     "version": "0.0.0",
-    "filename": "./index.js",
+    "filename": "./routers/categoryRouter.js",
     "groupTitle": "Category"
   },
   {
     "type": "get",
-    "url": "/category",
+    "url": "/category/all",
     "title": "get all category information",
     "name": "getCategory",
     "group": "Category",
@@ -119,12 +119,12 @@
       }
     },
     "version": "0.0.0",
-    "filename": "./index.js",
+    "filename": "./routers/categoryRouter.js",
     "groupTitle": "Category"
   },
   {
     "type": "post",
-    "url": "/item",
+    "url": "/item/create",
     "title": "create item",
     "name": "createItem",
     "group": "Item",
@@ -155,7 +155,7 @@
       }
     },
     "version": "0.0.0",
-    "filename": "./index.js",
+    "filename": "./routers/itemRouter.js",
     "groupTitle": "Item"
   },
   {
@@ -191,12 +191,12 @@
       }
     },
     "version": "0.0.0",
-    "filename": "./index.js",
+    "filename": "./routers/itemRouter.js",
     "groupTitle": "Item"
   },
   {
     "type": "post",
-    "url": "/editItem",
+    "url": "/item/edit",
     "title": "edit item",
     "name": "editItem",
     "group": "Item",
@@ -227,12 +227,12 @@
       }
     },
     "version": "0.0.0",
-    "filename": "./index.js",
+    "filename": "./routers/itemRouter.js",
     "groupTitle": "Item"
   },
   {
     "type": "get",
-    "url": "/items/:catoid",
+    "url": "/item/:catoid",
     "title": "get items searched by category id",
     "name": "getItems",
     "group": "Item",
@@ -263,12 +263,12 @@
       }
     },
     "version": "0.0.0",
-    "filename": "./index.js",
+    "filename": "./routers/itemRouter.js",
     "groupTitle": "Item"
   },
   {
     "type": "get",
-    "url": "/items/:catoid/:uid",
+    "url": "/item/:catoid/:uid",
     "title": "get items searched by category id and user id",
     "name": "getItemsFromUser",
     "group": "Item",
@@ -299,7 +299,7 @@
       }
     },
     "version": "0.0.0",
-    "filename": "./index.js",
+    "filename": "./routers/itemRouter.js",
     "groupTitle": "Item"
   },
   {
@@ -335,12 +335,12 @@
       }
     },
     "version": "0.0.0",
-    "filename": "./index.js",
+    "filename": "./routers/userRouter.js",
     "groupTitle": "User"
   },
   {
     "type": "get",
-    "url": "/user",
+    "url": "/user/all",
     "title": "get all User information",
     "name": "GetUser",
     "group": "User",
@@ -358,12 +358,12 @@
       }
     },
     "version": "0.0.0",
-    "filename": "./index.js",
+    "filename": "./routers/userRouter.js",
     "groupTitle": "User"
   },
   {
     "type": "get",
-    "url": "/user/:id",
+    "url": "/user/all/:id",
     "title": "get User information",
     "name": "GetUserById",
     "group": "User",
@@ -394,7 +394,7 @@
       }
     },
     "version": "0.0.0",
-    "filename": "./index.js",
+    "filename": "./routers/userRouter.js",
     "groupTitle": "User"
   },
   {
@@ -448,7 +448,7 @@
       }
     },
     "version": "0.0.0",
-    "filename": "./index.js",
+    "filename": "./routers/userRouter.js",
     "groupTitle": "User"
   },
   {
@@ -484,7 +484,7 @@
       }
     },
     "version": "0.0.0",
-    "filename": "./index.js",
+    "filename": "./routers/userRouter.js",
     "groupTitle": "User"
   },
   {
@@ -520,7 +520,7 @@
       }
     },
     "version": "0.0.0",
-    "filename": "./index.js",
+    "filename": "./routers/userRouter.js",
     "groupTitle": "User"
   },
   {
@@ -556,7 +556,7 @@
       }
     },
     "version": "0.0.0",
-    "filename": "./index.js",
+    "filename": "./routers/userRouter.js",
     "groupTitle": "User"
   },
   {
@@ -610,7 +610,7 @@
       }
     },
     "version": "0.0.0",
-    "filename": "./index.js",
+    "filename": "./routers/userRouter.js",
     "groupTitle": "User"
   }
 ]
