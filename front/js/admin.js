@@ -33,7 +33,7 @@ app.controller('adminCtrl', function($scope) {
                             $scope.users = response;
                         }
 
-                        fetch('/category', {
+                        fetch('/category/all', {
                             method: 'GET',
                             headers:{
                                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -100,7 +100,7 @@ app.controller('adminCtrl', function($scope) {
     };
 
     $scope.add = function() {
-        var url = '/createCategory';
+        var url = '/category/create';
         var data = {name: document.querySelector('#nameCato').value};
 
         fetch(url, {

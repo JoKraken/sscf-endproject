@@ -9,7 +9,7 @@ app.controller('myReportCtrl', function($scope) {
     }).then(res => res.json())
     .then((response) => {
         $scope.reports = response;
-        fetch('/category', {
+        fetch('/category/all', {
             method: 'GET',
             headers:{
                 'Content-Type': 'application/json'

@@ -1,6 +1,6 @@
 app.controller('modalCtrl', function($scope) {
 
-    fetch('/category', {
+    fetch('/category/all', {
         method: 'GET',
         headers:{
             'Content-Type': 'application/json'

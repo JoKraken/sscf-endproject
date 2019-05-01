@@ -14,7 +14,6 @@ router.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 router.use(express.static('front'));
 
 
-
 /**
  * @api {get} /item/:catoid get items searched by category id
  * @apiName getItems

@@ -6,7 +6,7 @@ app.controller('addCtrl', function($scope) {
     if($scope.logedIn) {
         $scope.categories = [];
 
-        fetch('/category', {
+        fetch('/category/all', {
             method: 'GET',
             headers:{
                 'Content-Type': 'application/json'
