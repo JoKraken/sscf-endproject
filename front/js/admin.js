@@ -8,7 +8,7 @@ app.controller('adminCtrl', function($scope) {
         $scope.users = [];
         $scope.categories = [];
 
-        fetch('/isAdmin/'+localStorage.temp, {
+        fetch('/user/isAdmin/'+localStorage.temp, {
             method: 'GET',
             headers:{
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -22,7 +22,7 @@ app.controller('adminCtrl', function($scope) {
             }else {
                 $scope.isAdmin = true;
 
-                fetch('/user', {
+                fetch('/user/all', {
                     method: 'GET',
                     headers:{
                         'Content-Type': 'application/x-www-form-urlencoded'
@@ -58,7 +58,7 @@ app.controller('adminCtrl', function($scope) {
     }
 
     $scope.changeStatus = function(id, status) {
-        var url = '/changeAdminStatus';
+        var url = '/user/changeAdminStatus';
         var data = {id: id, status: status};
 
         fetch(url, {
@@ -72,7 +72,7 @@ app.controller('adminCtrl', function($scope) {
     };
 
     $scope.deleteUser = function(id) {
-        var url = '/user/'+id;
+        var url = '/user/all/'+id;
 
         fetch(url, {
             method: 'DELETE',

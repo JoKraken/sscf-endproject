@@ -1,6 +1,6 @@
 app.controller('registerCtrl', function($scope) {
     $scope.register = function() {
-        var url = '/createUser';
+        var url = '/user/create';
         var data = {name: document.querySelector('#nameReg').value,
                     pwd: document.querySelector('#pwdReg').value};
 

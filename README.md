@@ -13,9 +13,11 @@ Live Demo:  https://env-3364758.jelastic.metropolia.fi/
   ## Technologies used
 
 * [Nodejs](https://nodejs.org/en/docs/) 
+* Express js
 * [MongoDB](https://docs.mongodb.com/) 
 * [Google Maps](https://developers.google.com/maps/documentation) 
-  
+* Jelastic  
+* WebStorm
 
 ## List of API used
 

@@ -7,6 +7,9 @@ const userCon = require('./controllers/userController');
 const cateCon = require('./controllers/categoryController');
 const itemCon = require('./controllers/itemController');
 
+//Routers
+const userRouter = require('./routers/userRouter');
+
 const https = require('https');
 var multer = require('multer');
 var upload = multer({dest: 'front/uploads/'});
@@ -53,67 +56,6 @@ mongoose.connect('mongodb://'+ process.env.DB_USER +':'+ process.env.DB_PWD + '@
 
 }, err => {
     console.log('Connection to db failed: ' + err);
-});
-
-/**
- * @api {get} /user get all User information
- * @apiName GetUser
- * @apiGroup User
- *
- * @apiSuccess {json} array of all users
- */
-app.get('/user', (req, res) => {
-    userCon.getUser().then((result) => {
-        res.send(JSON.stringify(result));
-    });
-});
-
-/**
- * @api {get} /user/:id get User information
- * @apiName GetUserById
- * @apiGroup User
- *
- * @apiParam {Number} id Users unique ID.
- *
- * @apiSuccess {json} one user
- */
-app.get('/user/:uid', (req, res) => {
-    userCon.getUserById(req.params.uid).then((result) => {
-        res.send(JSON.stringify(result));
-    });
-});
-
-/**
- * @api {delete} /user/:id delete user
- * @apiName DeleteUser
- * @apiGroup User
- *
- * @apiParam {Number} id Users unique ID.
- *
- * @apiSuccess {number} 200
- */
-app.delete('/user/:uid', (req, res) => {
-    userCon.deleteUser(req.params.uid).then((result) => {
-        res.send(JSON.stringify(result));
-    });
-});
-
-/**
- * @api {get} /isAdmin/:uid get the check if user is admin
- * @apiName IsAdmin
- * @apiGroup User
- *
- * @apiParam {Number} id Users unique ID.
- *
- * @apiSuccess {Number} 200
- * @apiError 404 user is not admin
- * @apiError 401 user not found
- */
-app.get('/isAdmin/:uid', (req, res) => {
-    let id = req.params.uid;
-    userCon.isAdmin(id).then((result) => {
-        res.sendStatus(result);
-    });
 });
 
 /**
@@ -199,68 +141,6 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 }));
 
 /**
- * @api {post} /login check user
- * @apiName login
- * @apiGroup User
- *
- * @apiParam (Request body) {FormData} user object
- *
- * @apiSuccess {Number} status 200
- * @apiError 404 wrong password
- * @apiError 401 user not found
- */
-app.post('/login', (req, res) => {
-    userCon.checkUser(req.body).then((result) => {
-        res.send(result);
-    });
-});
-
-/**
- * @api {post} /createUser create user
- * @apiName createUser
- * @apiGroup User
- *
- * @apiParam (Request body) {FormData} user object
- *
- * @apiSuccess {Number} user id
- */
-app.post('/createUser', (req, res) => {
-    userCon.createUser(req.body).then((result) => {
-        res.send(result);
-    });
-});
-
-/**
- * @api {post} /changeAdminStatus change admin status
- * @apiName changeAdminStatus
- * @apiGroup User
- *
- * @apiParam (Request body) {FormData} admin status (boolean)
- *
- * @apiSuccess {Number} status 200
- */
-app.patch('/changeAdminStatus', (req, res) => {
-    userCon.changeAdminStatus(req.body.id, req.body.status).then((result) => {
-        res.sendStatus(result);
-    });
-});
-
-/**
- * @api {post} /changeUserSettings change user settings
- * @apiName changeUserSettings
- * @apiGroup User
- *
- * @apiParam (Request body) {FormData} user object (username, password)
- *
- * @apiSuccess {Number} status 200
- */
-app.patch('/changeUserSettings', (req, res) => {
-    userCon.changeUserSettings(req.body._id, req.body).then((result) => {
-        res.sendStatus(result);
-    });
-});
-
-/**
  * @api {post} /createCategory create category
  * @apiName createCategory
  * @apiGroup Category
@@ -304,3 +184,5 @@ app.post('/editItem', upload.single('image'), (req, res) => {
         res.sendFile(__dirname + result);
     });
 });
+
+app.use('/user', userRouter);

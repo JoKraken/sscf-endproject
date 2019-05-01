@@ -22,7 +22,6 @@ app.controller('viewCtrl', function($scope) {
     }).catch(error => console.error('Error:', error));
     
     $scope.view = function (id) {
-        console.log(id);
         $scope.reports.forEach(function (item) {
             if (id == item._id) {
                 document.querySelector('.modal-body img').src = 'uploads/' + item.image;
@@ -44,7 +43,6 @@ app.controller('viewCtrl', function($scope) {
             }
         }).then(res => res.json())
         .then((response) => {
-            console.log(response);
             $scope.reports = response;
             $scope.$apply();
         }).catch(error => console.error('Error:', error));

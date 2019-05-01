@@ -1,7 +1,7 @@
 app.controller('settingCtrl', function($scope) {
     $scope.id = localStorage.temp;
 
-    fetch('/user/'+$scope.id, {
+    fetch('/user/all/'+$scope.id, {
         method: 'GET',
         headers:{
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -21,7 +21,7 @@ app.controller('settingCtrl', function($scope) {
             name: document.querySelector('#Uname').value,
             pwd: document.querySelector('#Upassword').value};
 
-        fetch('/changeUserSettings', {
+        fetch('/user/changeUserSettings', {
             method: 'PATCH',
             body: JSON.stringify(data),
             headers:{

@@ -34,7 +34,6 @@ app.controller('myReportCtrl', function($scope) {
             }).catch(error => console.error('Error:', error));
     };
 
-    
     $scope.view = function (id) {
         $scope.reports.forEach(function (item) {
             if (id == item._id) {
