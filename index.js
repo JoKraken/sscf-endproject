@@ -9,10 +9,10 @@ const itemCon = require('./controllers/itemController');
 
 //Routers
 const userRouter = require('./routers/userRouter');
+const itemRouter = require('./routers/itemRouter');
 
 const https = require('https');
 var multer = require('multer');
-var upload = multer({dest: 'front/uploads/'});
 const sharp = require('sharp');
 var bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -88,53 +88,6 @@ app.delete('/category/:catoID', (req, res) => {
     });
 });
 
-/**
- * @api {get} /items/:catoid get items searched by category id
- * @apiName getItems
- * @apiGroup Item
- *
- * @apiParam {Number} id Categories unique ID.
- *
- * @apiSuccess {json} array of the items
- */
-app.get('/items/:catoid', (req, res) => {
-    itemCon.getItems(req.params.catoid).then((result) => {
-        res.send(JSON.stringify(result));
-    });
-});
-
-/**
- * @api {get} /items/:catoid/:uid get items searched by category id and user id
- * @apiName getItemsFromUser
- * @apiGroup Item
- *
- * @apiParam {Number} id Categories unique ID.
- * @apiParam {Number} id Users unique ID.
- *
- * @apiSuccess {json} array of the items
- */
-app.get('/items/:catoid/:uid', (req, res) => {
-    itemCon.getItemsFromUser(req.params.catoid, req.params.uid).then((result) => {
-        res.send(JSON.stringify(result));
-    });
-});
-
-/**
- * @api {delete} /item/:itemID delete item
- * @apiName deleteItem
- * @apiGroup Item
- *
- * @apiParam {Number} id Items unique ID.
- *
- * @apiSuccess {Number} 200
- */
-app.delete('/item/:itemID', (req, res) => {
-    itemCon.deleteItem(req.params.itemID).then((result) => {
-        res.send(result);
-    });
-});
-
-
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
@@ -155,34 +108,5 @@ app.post('/createCategory', (req, res) => {
     });
 });
 
-/**
- * @api {post} /item create item
- * @apiName createItem
- * @apiGroup Item
- *
- * @apiParam (Request body) {FormData} item object
- *
- * @apiSuccess {String} url
- */
-app.post('/item', upload.single('image'), (req, res) => {
-    itemCon.createItem(req).then((result) => {
-        res.sendFile(__dirname + result);
-    });
-});
-
-/**
- * @api {post} /editItem edit item
- * @apiName editItem
- * @apiGroup Item
- *
- * @apiParam (Request body) {FormData} item object
- *
- * @apiSuccess {String} url
- */
-app.post('/editItem', upload.single('image'), (req, res) => {
-    itemCon.editItem(req).then((result) => {
-        res.sendFile(__dirname + result);
-    });
-});
-
 app.use('/user', userRouter);
+app.use('/item', itemRouter);

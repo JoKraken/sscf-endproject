@@ -9,7 +9,6 @@ app.controller('loginCtrl', function($scope) {
 
     $scope.login = function() {
         var url = '/user/login';
-        console.log("name: "+document.querySelector('#name').value);
         var data = {name: document.querySelector('#name').value,
             pwd: document.querySelector('#pwd').value};
 

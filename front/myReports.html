@@ -129,10 +129,13 @@
                 <h4 class="modal-title">Edit an report</h4>
             </div>
             <div class="modal-body">
-                <form method="POST" id="editForm" action="/editItem" enctype="multipart/form-data" style="display: inline">
+                <form method="POST" id="editForm" action="/item/edit" enctype="multipart/form-data" style="display: inline">
                     <div class="form-group">
-                        <label for="cato">Catogory:</label>
-                        <input type="text" class="form-control" name="cato" id="cato" placeholder="Enter catogory">
+                        <label for="catoSelect">Category:</label>
+                        <select class="form-control" id="catoSelect" name="catoSelect" form="editForm" required>
+                            <option disabled selected value> -- select an category -- </option>
+                            <option ng-repeat="cato in categories" value="{{cato._id}}">{{cato.name}}</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="title">Titel:</label>

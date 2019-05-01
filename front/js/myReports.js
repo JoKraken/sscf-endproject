@@ -1,7 +1,7 @@
 app.controller('myReportCtrl', function($scope) {
     $scope.catoId = undefined;
 
-    fetch('/items/'+$scope.catoId+'/'+localStorage.temp, {
+    fetch('/item/'+$scope.catoId+'/'+localStorage.temp, {
         method: 'GET',
         headers:{
             'Content-Type': 'application/json'
@@ -22,7 +22,7 @@ app.controller('myReportCtrl', function($scope) {
     }).catch(error => console.error('Error:', error));
 
     $scope.pressTitle = function (id) {
-        fetch('/items/'+id+'/'+localStorage.temp, {
+        fetch('/item/'+id+'/'+localStorage.temp, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -41,7 +41,6 @@ app.controller('myReportCtrl', function($scope) {
                 document.querySelector('#titelView').innerHTML = item.title;
                 document.querySelector('#desView').innerHTML = item.details;
                 let date = new Date(item.time);
-
                 document.querySelector('#timeView').innerHTML = "("+date.getDate()+"."+date.getMonth()+"."+date.getFullYear()+") ";
                 document.querySelector('#myModal').style.display = "block";
             }
@@ -52,8 +51,9 @@ app.controller('myReportCtrl', function($scope) {
         $scope.reports.forEach(function (item) {
             if (id == item._id) {
                 document.querySelector('#editForm').action = document.querySelector('#editForm').action + "?id=" + item._id;
-                console.log(document.querySelector('form').action);
-                document.querySelector('#cato').value = item.category.name;
+                document.querySelectorAll('#catoSelect option').forEach(function (option) {
+                    if(option.value == item.category._id) option.selected = true;
+                });
                 document.querySelector('#title').value = item.title;
                 document.querySelector('#des').value = item.details;
                 document.querySelector('#editModal').style.display = "block";

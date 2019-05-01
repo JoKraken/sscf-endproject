@@ -1,7 +1,7 @@
 app.controller('viewCtrl', function($scope) {
     $scope.catoId = undefined;
 
-    fetch('/items/'+$scope.catoId, {
+    fetch('/item/'+$scope.catoId, {
         method: 'GET',
         headers:{
             'Content-Type': 'application/json'
@@ -36,7 +36,7 @@ app.controller('viewCtrl', function($scope) {
     };
 
     $scope.pressTitle = function (id) {
-        fetch('/items/'+id, {
+        fetch('/item/'+id, {
             method: 'GET',
             headers:{
                 'Content-Type': 'application/json'

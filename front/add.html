@@ -61,7 +61,7 @@
     <div class="tab-content" ng-controller="addCtrl">
 
         <div ng-hide="logedIn" style="margin: 15px"> Please log in to add new content</div>
-        <form id="addForm" ng-show="logedIn" method="POST" action="/item" enctype="multipart/form-data" style="margin: 5%">
+        <form id="addForm" ng-show="logedIn" method="POST" action="/item/create" enctype="multipart/form-data" style="margin: 5%">
             <div class="form-group">
                 <label for="catoSelect">Category:</label>
                 <select class="form-control" id="catoSelect" name="catoSelect" form="addForm" required>
