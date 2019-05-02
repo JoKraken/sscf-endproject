@@ -28,8 +28,7 @@ app.controller('viewCtrl', function($scope) {
                 document.querySelector('#titelView').innerHTML = item.title;
                 document.querySelector('#desView').innerHTML = item.details;
                 let date = new Date(item.time);
-
-                document.querySelector('#timeView').innerHTML = "("+date.getDate()+"."+date.getMonth()+"."+date.getFullYear()+") ";
+                document.querySelector('#timeView').innerHTML = "("+date.getDate()+"."+(date.getMonth()+1)+"."+date.getFullYear()+") ";
                 document.querySelector('#myModal').style.display = "block";
             }
         });

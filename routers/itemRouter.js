@@ -3,16 +3,16 @@ require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
-const multer = require('multer');
-const upload = multer({dest: '../front/uploads/'});
+var multer = require('multer');
+var upload = multer({dest: '././front/uploads/'});
 const itemCon = require('../controllers/itemController');
 
 
+router.use(express.static('front'));
 router.use(bodyParser.json());       // to support JSON-encoded bodies
 router.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
 }));
-router.use(express.static('front'));
 
 
 /**
@@ -88,7 +88,6 @@ router.post('/create', upload.single('image'), (req, res) => {
  */
 router.post('/edit', upload.single('image'), (req, res) => {
     itemCon.editItem(req).then((result) => {
-        console.log(__dirname);
         res.sendFile(process.env.DIRNAME + result);
     });
 });

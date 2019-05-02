@@ -37,11 +37,11 @@ app.controller('myReportCtrl', function($scope) {
     $scope.view = function (id) {
         $scope.reports.forEach(function (item) {
             if (id == item._id) {
-                document.querySelector('.modal-body img').src = 'uploads/' + item.image;
+                if(item.image != "") document.querySelector('.modal-body img').src = 'uploads/' + item.image;
                 document.querySelector('#titelView').innerHTML = item.title;
                 document.querySelector('#desView').innerHTML = item.details;
                 let date = new Date(item.time);
-                document.querySelector('#timeView').innerHTML = "("+date.getDate()+"."+date.getMonth()+"."+date.getFullYear()+") ";
+                document.querySelector('#timeView').innerHTML = "("+date.getDate()+"."+(date.getMonth()+1)+"."+date.getFullYear()+") ";
                 document.querySelector('#myModal').style.display = "block";
             }
         });
