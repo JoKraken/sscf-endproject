@@ -44,6 +44,7 @@ app.controller('viewCtrl', function($scope) {
         }).then(res => res.json())
         .then((response) => {
             $scope.reports = response;
+            $scope.reportNumber = response.length;
             $scope.$apply();
         }).catch(error => console.error('Error:', error));
     };
