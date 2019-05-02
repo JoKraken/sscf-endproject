@@ -1,6 +1,7 @@
 app.controller('myReportCtrl', function($scope) {
     $scope.catoId = undefined;
 
+
     fetch('/item/'+$scope.catoId+'/'+localStorage.temp, {
         method: 'GET',
         headers:{
@@ -9,6 +10,7 @@ app.controller('myReportCtrl', function($scope) {
     }).then(res => res.json())
     .then((response) => {
         $scope.reports = response;
+        $scope.reportNumber = response.length;
         fetch('/category/all', {
             method: 'GET',
             headers:{

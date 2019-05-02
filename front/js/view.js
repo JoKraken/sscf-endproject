@@ -9,6 +9,7 @@ app.controller('viewCtrl', function($scope) {
     }).then(res => res.json())
     .then((response) => {
         $scope.reports = response;
+        $scope.reportNumber = response.length;
         fetch('/category/all', {
             method: 'GET',
             headers:{

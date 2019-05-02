@@ -74,6 +74,7 @@
                 <div id="content" class="col ">
                     <div class="card-deck">
                         <div class="card-deck">
+                            <div ng-if="reportNumber == 0"> There are no reports</div>
                             <article class="card cardAround" ng-repeat="report in reports">
                                 <img class="card-img-top" src="uploads/{{data.image}}" alt="">
                                 <div class="card-block">
