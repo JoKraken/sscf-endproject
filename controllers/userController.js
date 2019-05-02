@@ -1,7 +1,7 @@
 const schema = require('../models/user');
 
 exports.getUser = () => {
-    return schema.User.find({}, {password: 0}).then(data => {
+    return schema.User.find({delete: false}, {password: 0}).then(data => {
         return data;
     });
 };
@@ -12,7 +12,7 @@ exports.getUserById = (uid) => {
 };
 
 exports.checkUser = (body) => {
-    return schema.User.find({username: body.name}).then(data => {
+    return schema.User.find({username: body.name, delete: false}).then(data => {
         if (data.length == 1) {
             if (data[0].password == body.pwd) {
                 return {id: data[0]._id, name: data[0].username};
@@ -24,7 +24,7 @@ exports.checkUser = (body) => {
 };
 
 exports.createUser = (body) => {
-    return schema.User.find({username: body.name}).then(data => {
+    return schema.User.find({username: body.name, delete: false}).then(data => {
         if(data.length == 0 && body.name.length <= 10){
             return schema.User.create({
                 username: body.name,
@@ -59,7 +59,7 @@ exports.changeUserSettings = (id, body) => {
 };
 
 exports.deleteUser = (id) => {
-    return schema.User.findByIdAndRemove(id, function (err) {
+    return schema.User.update({_id: id},{delete: true}).then(data => {
         return 200;
     });
 };
