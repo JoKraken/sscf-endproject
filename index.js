@@ -30,7 +30,7 @@ app.use(function (req, res, next) {
 app.use(express.static('front'));
 
 //jelastic https redirect
-/*app.use ((req, res, next) => {
+app.use ((req, res, next) => {
     if (req.secure) {
         // request was via https, so do no special handling
         next();
@@ -38,7 +38,7 @@ app.use(express.static('front'));
         // request was via http, so redirect to https
         res.redirect('https://' + req.headers.host + req.url);
     }
-});*/
+});
 
 mongoose.connect('mongodb://'+ process.env.DB_USER +':'+ process.env.DB_PWD + '@'+ process.env.DB_HOST + ':' + process.env.DB_PORT + '/sssf-endproject', { useNewUrlParser: true }).then(() => {
     console.log('Connected successfully.');
