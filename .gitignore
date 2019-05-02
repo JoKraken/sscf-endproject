@@ -62,4 +62,4 @@ typings/
 
 # WebStorm
 .idea/*
-.front/uploads/*
+front/uploads/*
