@@ -48,7 +48,7 @@ exports.createItem = (req) =>  {
 exports.editItem = (req) =>  {
     console.log(req.body);
     var temp = req.body;
-    
+
     let data = {
         category: temp.catoSelect,
         title: temp.title,

@@ -1,4 +1,5 @@
 'use strict';
+require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
@@ -72,7 +73,7 @@ router.delete('/:itemID', (req, res) => {
  */
 router.post('/create', upload.single('image'), (req, res) => {
     itemCon.createItem(req).then((result) => {
-        res.sendFile(__dirname.split("\\routers")[0] + result);
+        res.sendFile(process.env.DIRNAME + result);
     });
 });
 
@@ -87,7 +88,8 @@ router.post('/create', upload.single('image'), (req, res) => {
  */
 router.post('/edit', upload.single('image'), (req, res) => {
     itemCon.editItem(req).then((result) => {
-        res.sendFile(__dirname.split("\\routers")[0] + result);
+        console.log(__dirname);
+        res.sendFile(process.env.DIRNAME + result);
     });
 });
 
