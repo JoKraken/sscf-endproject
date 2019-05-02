@@ -30,6 +30,7 @@ app.controller('settingCtrl', function($scope) {
         }).then((response) => {
             if (response.status == 200) {
                 document.querySelector('#uischange').style.display = "block";
+                localStorage.setItem("name", data.name);
             }else{
                 document.querySelector('#uerror').style.display = "block";
             }
